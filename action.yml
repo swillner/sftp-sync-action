@@ -1,0 +1,40 @@
+name: "SFTP Sync"
+description: "Sync directory to server via sftp"
+branding:
+  icon: "upload-cloud"
+  color: "gray-dark"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  server:
+    description: "server"
+    required: true
+  port:
+    description: "server port (default: 22)"
+    required: true
+    default: 22
+  user:
+    description: "user"
+    required: true
+  user_private_key:
+    description: "Private SSH key for user (include via secrets if possible)"
+    required: true
+  host_public_key:
+    description: "Public SSH key of host"
+    required: true
+    default: ""
+  local:
+    description: "Local path to sync (default: .)"
+    required: true
+    default: .
+  remote:
+    description: "Path on server (default: .)"
+    required: true
+    default: .
+  ssh_options:
+    description: "Additional options for SSH"
+    required: false
+  mirror_options:
+    description: "Additional options for lftp mirror command (e.g. '--exclude-glob=.git*/ --verbose' is useful)"
+    required: false
